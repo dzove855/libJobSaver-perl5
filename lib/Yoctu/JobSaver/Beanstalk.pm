@@ -10,11 +10,11 @@ use Beanstalk::Client;
 my $VERSION = "0.1";
 sub Version { $VERSION; }
 
-sub setUrl {
-    my ($self, $url) = @_;
+sub setServer {
+    my ($self, $server) = @_;
 
-    $self->{url} = $url if  defined($url);
-    return($self->{url});
+    $self->{server} = $server if  defined($server);
+    return($self->{server});
 }
 
 sub setTube {
@@ -31,7 +31,7 @@ sub save {
 
     my $client = Beanstalk::Client->new(
         { 
-            server       => $self->{url},
+            server       => $self->{server},
             default_tube => $self->{tube},
         }
     );
@@ -53,7 +53,7 @@ sub read {
 
     my $client = Beanstalk::Client->new(
         { 
-            server       => $self->{url},
+            server       => $self->{server},
             default_tube => $self->{tube},
         }
     );

@@ -34,8 +34,8 @@ sub save {
 
     return "No Data given!" if ! $data;
 
-    # Default id should always be 1
-    my $id = 1;
+    # Default id should always be 0, because there's an icrement
+    my $id = 0;
     
     # open the dir, and get thes files 
     opendir my $dir, $self->getDir() or return "Cannot open Dir!";

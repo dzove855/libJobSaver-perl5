@@ -1,0 +1,97 @@
+package Yoctu::JobSaver;
+
+use strict;
+
+# Load just the Basic, this package contains nothing, just a doc :D
+use Yoctu::JobSaver::Base;
+
+my $VERSION = "0.1";
+sub Version { $VERSION; }
+
+1;
+
+__END__
+
+# This part should be read with perldoc
+# see: https://perldoc.perl.org/perlpod.html
+# or: man perlpod
+
+=encoding utf-8
+
+=head1 NAME
+
+JobSaver - Simpile Saver for Data
+
+=head1 SYNOPSIS
+
+use Yoctu::JobSaver::FileSystem; # Package for File System Saver
+
+my $saver = Yoctu::JobSaver::FileSystem->new;
+$saver->setDir("/tmp/test"); # set the directory
+
+$saver->save($data); # Data should be an hash in scalar
+$saver->read(); # This returns a hash in scalar based on ID => DATA
+
+=head1 DESCRIPTION
+
+This Module is a simple Data Saver, who can be reused.
+For Example, you have a curl who failed, so you can save somewhere and the next time, 
+youre script will be run, that will reuse the saved data, to retry the curl
+
+Package who're needed:
+
+=over 4
+
+=item *
+
+JSON
+
+=item *
+
+Beanstalk::Client
+
+=item *
+
+File::Slurp
+
+=back
+
+
+The're two differents saver methods. One who will save the data in files and one who will save in beanstalk.
+
+
+=head2 FileSystem
+    
+This package will save the data in the given directory, the filename is based id with an increment
+
+=head3 Example
+
+use Yoctu::JobSaver::FileSystem; # Package for File System Saver
+
+my $saver = Yoctu::JobSaver::FileSystem->new;
+$saver->setDir("/tmp/test"); # set the directory
+
+$saver->save($data); # Data should be an hash in scalar
+$saver->read(); # This returns a hash in scalar based on ID => DATA
+
+=head2 Beanstalk
+
+This Package will save the data in the given Beanstalk server and tube.
+
+=head3 Example
+
+use Yoctu::JobSaver::Beanstalk; # Package for Beanstalk Saver
+
+my $saver = Yoctu::JobSaver::Beanstalk->new;
+$saver->setServer("localhost"); # set the server
+$saver->setTube("test"); # set the tube
+
+$saver->save($data); # Data should be an hash in scalar
+$saver->read(); # This returns a hash in scalar based on ID => DATA
+
+=head1 AUTHORS
+
+Yoctu
+
+=cut
+
