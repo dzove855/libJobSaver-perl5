@@ -27,9 +27,11 @@ JobSaver - Simpile Saver for Data
 use Yoctu::JobSaver::FileSystem; # Package for File System Saver
 
 my $saver = Yoctu::JobSaver::FileSystem->new;
+
 $saver->setDir("/tmp/test"); # set the directory
 
 $saver->save($data); # Data should be an hash in scalar
+
 $saver->read(); # This returns a hash in scalar based on ID => DATA
 
 =head1 DESCRIPTION
@@ -69,9 +71,11 @@ This package will save the data in the given directory, the filename is based id
 use Yoctu::JobSaver::FileSystem; # Package for File System Saver
 
 my $saver = Yoctu::JobSaver::FileSystem->new;
+
 $saver->setDir("/tmp/test"); # set the directory
 
 $saver->save($data); # Data should be an hash in scalar
+
 $saver->read(); # This returns a hash in scalar based on ID => DATA
 
 =head2 Beanstalk
@@ -83,10 +87,13 @@ This Package will save the data in the given Beanstalk server and tube.
 use Yoctu::JobSaver::Beanstalk; # Package for Beanstalk Saver
 
 my $saver = Yoctu::JobSaver::Beanstalk->new;
+
 $saver->setServer("localhost"); # set the server
+
 $saver->setTube("test"); # set the tube
 
 $saver->save($data); # Data should be an hash in scalar
+
 $saver->read(); # This returns a hash in scalar based on ID => DATA
 
 =head1 AUTHORS
